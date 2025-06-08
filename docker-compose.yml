@@ -10,7 +10,7 @@ services:
     restart: always
     ports:
       - "80:80"
-      - "443:443" # исправлено пробрасывание порта 443
+      - "443:80"
     depends_on:
       - core
       - cdn
@@ -38,7 +38,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - ./static:/usr/local/apache2/htdocs/static
+      - ./:/usr/local/apache2/htdocs/
     expose:
       - "8080"
     networks:
