@@ -3,14 +3,14 @@ version: '3.8'
 services:
   proxy:
     container_name: proxy
-    image: ghcr.io/vo1odko/blackblaze/proxy
+    image: ghcr.io/i-am-antony/blackblaze/proxy
     build:
       context: proxy
       dockerfile: Dockerfile
     restart: always
     ports:
       - "80:80"
-      - "443:80"
+      - "443:443"
     depends_on:
       - core
       - cdn
@@ -19,7 +19,7 @@ services:
 
   core:
     container_name: core
-    image: ghcr.io/vo1odko/blackblaze/core
+    image: ghcr.io/i-am-antony/blackblaze/core
     build:
       context: core
       dockerfile: Dockerfile
@@ -32,13 +32,13 @@ services:
 
   cdn:
     container_name: cdn
-    image: ghcr.io/vo1odko/blackblaze/cdn
+    image: ghcr.io/i-am-antony/blackblaze/cdn
     build:
       context: cdn
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - ./:/usr/local/apache2/htdocs/
+      - ./static:/usr/local/apache2/htdocs/static
     expose:
       - "8080"
     networks:
@@ -46,7 +46,7 @@ services:
 
   psql:
     container_name: psql
-    image: ghcr.io/vo1odko/blackblaze/psql
+    image: ghcr.io/i-am-antony/blackblaze/psql
     build:
       context: psql
       dockerfile: Dockerfile
