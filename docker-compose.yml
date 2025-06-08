@@ -10,7 +10,7 @@ services:
     restart: always
     ports:
       - "80:80"
-      - "443:80"
+      - "443:443" # исправлено пробрасывание порта 443
     depends_on:
       - core
       - cdn
