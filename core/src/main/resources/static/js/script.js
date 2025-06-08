@@ -153,3 +153,26 @@ document.onkeydown = function(event) {
         changeSlide(1);
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Для всех ссылок в навигации
+    document.querySelectorAll('#navbar a[href^="#"]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            // Если меню открыто (на мобильных), закрываем его
+            const navbar = document.getElementById('navbar');
+            const menuToggle = document.getElementById('menu-toggle');
+            if (window.innerWidth <= 1000 && navbar.style.display !== 'none') {
+                navbar.style.display = 'none';
+                menuToggle.innerHTML = '☰';
+                menuToggle.classList.remove('active');
+            }
+            // Плавный скролл к якорю
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});

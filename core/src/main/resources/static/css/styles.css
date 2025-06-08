@@ -527,3 +527,7 @@ iframe {
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
+
+section, #portfolio, #about, #services, #contacts {
+  scroll-margin-top: 80px; /* подберите под высоту header */
+}
